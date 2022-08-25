@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valodation</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe&family=Poppins:wght@100&family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="container">
+        <div class="form-wrapper">
+            <div class="banner">
+                <h1>Chào người anh em thiện lành!</h1>
+                <p>Nhập thông tin thử đi bro</p>
+            </div>
+            <div class="green-btn">
+                <button type="button" > Sign Up</button>
+            </div>
+            <form action="" class="signup-form" id="signup-form">
+                <h1>Tạo account gunny nè</h1>
+                <div class="social-media">
+                    <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-linkedin-in"></i>
+                </div>
+                <p>Hay đăng nhập bằng social media nếu bro muốn</p>
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input id="fullname" type="text" name="name" placeholder="Name" >
+                    <span class="form-message"></span>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input id="email" type="email" name="email" placeholder="email" >
+                    <span class="form-message"></span>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input id="password" type="password" name="password" placeholder="Password">
+                    <span class="form-message"></span>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input id="password-config" type="password" name="password-config" placeholder="Password Config" >
+                    <span class="form-message"></span>
+                </div>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+    <script src="./validation.js" type="text/javascript"></script>
+    <script>
+        Validator({
+            form: '#signup-form',
+            errorSelector : '.form-message',
+            rules: [
+                Validator.isRequired('#fullname'),
+                Validator.isRequired('#email'),
+                Validator.isEmail('#email'),
+                Validator.isRequired('#password'),
+                Validator.minLength('#password',6),
+                Validator.isRequired('#password-config'),
+                Validator.isConfigPassword('#password-config',function() {
+                    return document.querySelector('#signup-form #password').value
+                })
+            ],
+            onSubmit : function(data) {
+                //call API
+            }
+        })
+    </script>
+</body>
+</html>
